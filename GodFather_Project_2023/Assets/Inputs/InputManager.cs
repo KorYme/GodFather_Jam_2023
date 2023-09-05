@@ -108,6 +108,6 @@ public class InputManager : MonoBehaviour
     private void GetCharacterFromInput(string character)
     {
         _text.text = character + "-" + _text.text;
-        _bubbleManager.CheckAllSigns(character);
+        _bubbleManager.CheckAllSigns(character.ToUpper());
     }
 }
