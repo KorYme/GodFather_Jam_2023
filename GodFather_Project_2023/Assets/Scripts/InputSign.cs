@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class InputSign : MonoBehaviour
 {
+    [SerializeField] RectTransform _rTransform;
     [SerializeField] TMP_Text _text;
+    [SerializeField] SignMovement _signMovement;
 
-    public void SetText(string text)
+    Rect _boxToStayInside;
+    Vector2 _direction;
+
+    public void Initialize(Rect rectBubble, string text)
     {
+        _boxToStayInside = rectBubble;
         _text.text = text;
-        gameObject.SetActive(true);
+        StartCoroutine(ChangeDirectionCoroutine());
+        StartCoroutine(MovementCoroutine());
     }
 
     public void CheckText(string text)
@@ -19,6 +26,32 @@ public class InputSign : MonoBehaviour
         if (text == _text.text)
         {
             gameObject.SetActive(false);
+            _text.text = "";
+        }
+    }
+
+    public void HideSign()
+    {
+        if (!gameObject.activeSelf) return;
+        gameObject.SetActive(false);
+        _text.text = "";
+    }
+
+    IEnumerator MovementCoroutine()
+    {
+        //Debug.Log(_rTransform.transform.position);
+        while (true)
+        {
+            yield return null;
+        }
+    }
+
+    IEnumerator ChangeDirectionCoroutine()
+    {
+        while (true)
+        {
+            _direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)).normalized;
+            yield return new WaitForSeconds(Random.Range(0f, _signMovement.ChangeDirectiontimer));
         }
     }
 }
