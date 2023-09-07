@@ -7,15 +7,17 @@ public class BubbleManager : MonoBehaviour
 {
     [SerializeField] RectTransform _rTransform;
     [SerializeField] GameObject _inputSignPrefab;
-    [SerializeField] List<int> _inputSignNumberPerRound;
-
-    List<InputSign> _signs = new List<InputSign>();
-    int _roundNumber;
+    [SerializeField] List<InputSign> _signs = new List<InputSign>();
 
     private void Start()
     {
-        _signs.Clear();
-        _roundNumber = 0;
+        ScoreManager.Instance.PlayNewRound();
+        InitializeSigns();
+    }
+
+    public void ChangePlayer()
+    {
+        ScoreManager.Instance.ChangePlayer();
         InitializeSigns();
     }
 
@@ -31,15 +33,15 @@ public class BubbleManager : MonoBehaviour
     public void InitializeSigns()
     {
         List<string> fullList = new List<string>(InputManager.CHARACTERS);
-        for (int i = 0; i < _inputSignNumberPerRound[_roundNumber]; i++)
+        for (int i = 0; i < ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round]; i++)
         {
             string text = fullList[Random.Range(0, fullList.Count)];
-            Vector3 newposition = _rTransform.transform.position 
-                + new Vector3(_rTransform.rect.width * Random.Range(-.5f,.5f), _rTransform.rect.height * Random.Range(-.5f, .5f));
-            InputSign newSign = Instantiate(_inputSignPrefab, newposition, Quaternion.identity, transform).GetComponent<InputSign>();
-            _signs.Add(newSign);
-            newSign.Initialize(_rTransform.rect, text);
+            _signs[i].Initialize(_rTransform, text);
             fullList.Remove(text);
+        }
+        for (int i = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round]; i < _signs.Count; i++)
+        {
+            _signs[i].HideSign();
         }
     }
 
