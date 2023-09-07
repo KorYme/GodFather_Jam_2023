@@ -41,6 +41,7 @@ public class InputManager : MonoBehaviour
     Inputs _inputAction;
     [SerializeField] BubbleManager _bubbleManager;
 
+
     private void Awake()
     {
         _inputAction = new Inputs();

@@ -115,6 +115,10 @@ MonoBehaviour:
   - {fileID: 874232094507687030}
   - {fileID: 8084953797375481440}
   - {fileID: 9130920706823593656}
+  _stunTime: 1
+  _onStun:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &203251098348702260
 PrefabInstance:
   m_ObjectHideFlags: 0

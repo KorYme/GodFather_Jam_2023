@@ -1618,16 +1618,16 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7635041265591966611, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
-      propertyPath: _rTransform
-      value: 
-      objectReference: {fileID: 1146840866}
-    - target: {fileID: 7635041265591966611, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
-      propertyPath: _inputSignPrefab
-      value: 
-      objectReference: {fileID: 5506812874961126937, guid: 081e2143b145bf44a8e21cb1858caf87, type: 3}
-    - target: {fileID: 7635041265591966611, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
       propertyPath: _inputSignNumberPerRound.Array.data[0]
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635041265591966611, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
+      propertyPath: _onStun.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635041265591966611, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
+      propertyPath: _onStun.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8189429931931828651, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
       propertyPath: m_SizeDelta.x
