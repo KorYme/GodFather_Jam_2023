@@ -15,6 +15,12 @@ public class BubbleManager : MonoBehaviour
         InitializeSigns();
     }
 
+    public void ChangePlayer()
+    {
+        ScoreManager.Instance.ChangePlayer();
+        InitializeSigns();
+    }
+
     public void CheckAllSigns(string str)
     {
         _signs.ForEach(x => x.CheckText(str));

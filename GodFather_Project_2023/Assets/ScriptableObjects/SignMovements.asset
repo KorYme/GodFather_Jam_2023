@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SignMovements
   m_EditorClassIdentifier: 
   MaxSpeed: 50
-  ChangeDirectiontimer: {x: 1, y: 5}
+  ChangeDirectionTimerRange: {x: 1, y: 5}
   AllMovementCurves:
   - serializedVersion: 2
     m_Curve:

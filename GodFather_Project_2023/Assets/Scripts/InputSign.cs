@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class InputSign : MonoBehaviour
     [SerializeField] TMP_Text _text;
     [SerializeField] Image _icon;
     [SerializeField] SignMovement _signMovement;
+    [SerializeField] MappingDictionnarySO _mapping;
 
     Coroutine _movementCoroutine;
     Coroutine _directionCoroutine;
@@ -22,6 +24,14 @@ public class InputSign : MonoBehaviour
     public void Initialize(RectTransform rectBubble, string text)
     {
         gameObject.SetActive(true);
+        if (_directionCoroutine != null)
+        {
+            StopCoroutine(_directionCoroutine);
+        }
+        if (_movementCoroutine != null)
+        {
+            StopCoroutine(_movementCoroutine);
+        }
         Rect boxToStayInside = new Rect(rectBubble.rect.min + new Vector2(_rTransform.rect.size.x/2f, _rTransform.rect.size.y/-2f), 
             rectBubble.rect.size - _rTransform.rect.size);
         SetUpGoodIcon(text);
@@ -56,7 +66,7 @@ public class InputSign : MonoBehaviour
     private void SetUpGoodIcon(string text)
     {
         _text.text = text;
-        //RAJOUTER LA   
+        _icon.sprite = _mapping.Values[_mapping.Keys.FindIndex(x => x.ToLower() == text.ToLower())];
     }
 
     IEnumerator MovementCoroutine()

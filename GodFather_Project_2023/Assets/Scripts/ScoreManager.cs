@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
     public int CurrentPlayer { get; private set; }
 
     public static ScoreManager Instance;
+    public UnityEvent<int> PlayerChange;
 
     public int Round { get; private set; }
     public List<int> PictoPerBatch;
@@ -40,5 +42,6 @@ public class ScoreManager : MonoBehaviour
     public void ChangePlayer()
     {
         CurrentPlayer = (CurrentPlayer + 1)%2;
+        PlayerChange?.Invoke(CurrentPlayer);
     }
 }
