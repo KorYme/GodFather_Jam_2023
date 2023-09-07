@@ -7,13 +7,11 @@ public class BubbleManager : MonoBehaviour
 {
     [SerializeField] RectTransform _rTransform;
     [SerializeField] GameObject _inputSignPrefab;
-    [SerializeField] List<int> _inputSignNumberPerRound;
     [SerializeField] List<InputSign> _signs = new List<InputSign>();
-    int _roundNumber;
 
     private void Start()
     {
-        _roundNumber = 0;
+        ScoreManager.Instance.PlayNewRound();
         InitializeSigns();
     }
 
@@ -29,13 +27,13 @@ public class BubbleManager : MonoBehaviour
     public void InitializeSigns()
     {
         List<string> fullList = new List<string>(InputManager.CHARACTERS);
-        for (int i = 0; i < _inputSignNumberPerRound[_roundNumber]; i++)
+        for (int i = 0; i < ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round]; i++)
         {
             string text = fullList[Random.Range(0, fullList.Count)];
             _signs[i].Initialize(_rTransform, text);
             fullList.Remove(text);
         }
-        for (int i = _inputSignNumberPerRound[_roundNumber]; i < _signs.Count; i++)
+        for (int i = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round]; i < _signs.Count; i++)
         {
             _signs[i].HideSign();
         }

@@ -102,7 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rTransform: {fileID: 8431544114615112871}
   _inputSignPrefab: {fileID: 5506812874961126937, guid: 081e2143b145bf44a8e21cb1858caf87, type: 3}
-  _inputSignNumberPerRound: 030000000500000008000000
   _signs:
   - {fileID: 3325821135301294280}
   - {fileID: 3778538094578539515}

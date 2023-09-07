@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,6 @@ using UnityEngine;
 public class SignMovement : ScriptableObject
 {
     public float MaxSpeed;
-    public Vector2 ChangeDirectiontimer;
+    [MinMaxSlider(0f,10f)] public Vector2 ChangeDirectionTimerRange;
     public List<AnimationCurve> AllMovementCurves;
 }
