@@ -10,8 +10,7 @@ public class BattleManager : MonoBehaviour
     public float timeBetweenPunchline;
     public float durationOfThePunchline;
 
-    private GameObject bubbleRight;
-    private GameObject bubbleLeft;
+    private GameObject bubble;
     private GameObject crowd;
     private ReactionScript reactionScript;
 
@@ -20,16 +19,14 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        bubbleRight = GameObject.Find("/Canvas/BubbleRight");
-        bubbleLeft = GameObject.Find("/Canvas/BubbleLeft");
-        crowd = GameObject.Find("/Crowd");
+        bubble = GameObject.Find("/Canvas/PunchlineBubble");
+        crowd = GameObject.Find("/FrontCrowd");
         reactionScript = gameObject.GetComponent<ReactionScript>();
     }
 
     void Start()
     {
-        bubbleRight.SetActive(false);
-        bubbleLeft.SetActive(false);
+        bubble.SetActive(false);
         StartCoroutine(P1Punchline());
     }
 
@@ -47,10 +44,10 @@ public class BattleManager : MonoBehaviour
         if(scoreP1 >= punchlineScoreNeeded)
         {
             scoreP1 -= punchlineScoreNeeded;
-            bubbleLeft.SetActive(true);
+            bubble.SetActive(true);
             yield return new WaitForSeconds(durationOfThePunchline);
-            bubbleLeft.SetActive(false);
-            StartCoroutine(CrowdJump());
+            bubble.SetActive(false);
+            //StartCoroutine(CrowdJump());
             StartCoroutine(reactionScript.DisplayReaction());
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
@@ -68,10 +65,10 @@ public class BattleManager : MonoBehaviour
         if (scoreP2 >= punchlineScoreNeeded)
         {
             scoreP2 -= punchlineScoreNeeded;
-            bubbleRight.SetActive(true);
+            bubble.SetActive(true);
             yield return new WaitForSeconds(durationOfThePunchline);
-            bubbleRight.SetActive(false);
-            StartCoroutine(CrowdJump());
+            bubble.SetActive(false);
+            //StartCoroutine(CrowdJump());
             StartCoroutine(reactionScript.DisplayReaction());
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
