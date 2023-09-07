@@ -9,15 +9,26 @@ public class InputSign : MonoBehaviour
     [SerializeField] TMP_Text _text;
     [SerializeField] SignMovement _signMovement;
 
-    Rect _boxToStayInside;
-    Vector2 _direction;
+    Coroutine _movementCoroutine;
+    Coroutine _directionCoroutine;
 
-    public void Initialize(Rect rectBubble, string text)
+    RectTransform _rectTransformBubble;
+    Vector2 _direction;
+    AnimationCurve _currentCurve;
+    float _deltaTime;
+
+    public void Initialize(RectTransform rectBubble, string text)
     {
-        _boxToStayInside = rectBubble;
+        gameObject.SetActive(true);
+        Rect boxToStayInside = new Rect(rectBubble.rect.min + new Vector2(_rTransform.rect.size.x/2f, _rTransform.rect.size.y/-2f), 
+            rectBubble.rect.size - _rTransform.rect.size);
         _text.text = text;
-        StartCoroutine(ChangeDirectionCoroutine());
-        StartCoroutine(MovementCoroutine());
+        _rectTransformBubble = rectBubble;
+        transform.position = rectBubble.transform.position + new Vector3(
+                    Mathf.Clamp(rectBubble.rect.width * Random.Range(-.5f, .5f), boxToStayInside.min.x, boxToStayInside.max.x),
+                    Mathf.Clamp(rectBubble.rect.height * Random.Range(-.5f, .5f), boxToStayInside.min.y, boxToStayInside.max.y));
+        _directionCoroutine = StartCoroutine(ChangeDirectionCoroutine());
+        _movementCoroutine = StartCoroutine(MovementCoroutine());
     }
 
     public void CheckText(string text)
@@ -25,8 +36,10 @@ public class InputSign : MonoBehaviour
         if (!gameObject.activeSelf) return;
         if (text == _text.text)
         {
-            gameObject.SetActive(false);
+            StopCoroutine(_directionCoroutine);
+            StopCoroutine(_movementCoroutine);
             _text.text = "";
+            gameObject.SetActive(false);
         }
     }
 
@@ -39,9 +52,18 @@ public class InputSign : MonoBehaviour
 
     IEnumerator MovementCoroutine()
     {
-        //Debug.Log(_rTransform.transform.position);
         while (true)
         {
+            Vector3 newPosition = transform.position + (Vector3)_direction 
+                * _signMovement.MaxSpeed * _currentCurve.Evaluate(_deltaTime) * Time.deltaTime;
+            transform.position = new Vector3(
+                Mathf.Clamp(newPosition.x,
+                _rectTransformBubble.transform.position.x - (_rectTransformBubble.rect.width / 2f) + (_rTransform.rect.width / 2f),
+                _rectTransformBubble.transform.position.x + (_rectTransformBubble.rect.width / 2f) - (_rTransform.rect.width / 2f)),
+                Mathf.Clamp(newPosition.y,
+                _rectTransformBubble.transform.position.y - (_rectTransformBubble.rect.height / 2f) + (_rTransform.rect.height / 2f),
+                _rectTransformBubble.transform.position.y + (_rectTransformBubble.rect.height / 2f) - (_rTransform.rect.height / 2f)));
+            _deltaTime += Time.deltaTime;
             yield return null;
         }
     }
@@ -50,8 +72,10 @@ public class InputSign : MonoBehaviour
     {
         while (true)
         {
+            _deltaTime = 0;
             _direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)).normalized;
-            yield return new WaitForSeconds(Random.Range(0f, _signMovement.ChangeDirectiontimer));
+            _currentCurve = _signMovement.AllMovementCurves[Random.Range(0, _signMovement.AllMovementCurves.Count)];
+            yield return new WaitForSeconds(Random.Range(_signMovement.ChangeDirectiontimer.x, _signMovement.ChangeDirectiontimer.y));
         }
     }
 }

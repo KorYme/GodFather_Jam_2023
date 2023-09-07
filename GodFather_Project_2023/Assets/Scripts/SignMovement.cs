@@ -6,6 +6,6 @@ using UnityEngine;
 public class SignMovement : ScriptableObject
 {
     public float MaxSpeed;
-    public float ChangeDirectiontimer;
+    public Vector2 ChangeDirectiontimer;
     public List<AnimationCurve> AllMovementCurves;
 }

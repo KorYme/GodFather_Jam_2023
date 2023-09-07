@@ -653,7 +653,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1146840869}
         m_TargetAssemblyTypeName: BubbleManager, Assembly-CSharp
-        m_MethodName: HideAllSigns
+        m_MethodName: InitializeSigns
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -993,6 +993,10 @@ PrefabInstance:
       propertyPath: _inputSignPrefab
       value: 
       objectReference: {fileID: 5506812874961126937, guid: 081e2143b145bf44a8e21cb1858caf87, type: 3}
+    - target: {fileID: 7635041265591966611, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
+      propertyPath: _inputSignNumberPerRound.Array.data[0]
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8431544114615112868, guid: 0c4192ee55c8e984c8c161fc6868ec4e, type: 3}
       propertyPath: m_Name
       value: Bubble
