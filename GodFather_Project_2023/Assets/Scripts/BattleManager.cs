@@ -7,27 +7,26 @@ public class BattleManager : MonoBehaviour
     public int scoreP1;
     public int scoreP2;
     public int punchlineScoreNeeded;
-    public int timeBetweenPunchline;
-    public int durationOfThePunchline;
+    public float timeBetweenPunchline;
+    public float durationOfThePunchline;
 
-    private GameObject bubbleRight;
-    private GameObject bubbleLeft;
+    private GameObject bubble;
     private GameObject crowd;
+    private ReactionScript reactionScript;
 
     private bool P1NoMorePunchline;
     private bool P2NoMorePunchline;
 
     private void Awake()
     {
-        bubbleRight = GameObject.Find("/Canvas/BubbleRight");
-        bubbleLeft = GameObject.Find("/Canvas/BubbleLeft");
-        crowd = GameObject.Find("/Crowd");
+        bubble = GameObject.Find("/Canvas/PunchlineBubble");
+        crowd = GameObject.Find("/FrontCrowd");
+        reactionScript = gameObject.GetComponent<ReactionScript>();
     }
 
     void Start()
     {
-        bubbleRight.SetActive(false);
-        bubbleLeft.SetActive(false);
+        bubble.SetActive(false);
         StartCoroutine(P1Punchline());
     }
 
@@ -42,14 +41,14 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator P1Punchline()
     {
-        Debug.Log("P1");
         if(scoreP1 >= punchlineScoreNeeded)
         {
             scoreP1 -= punchlineScoreNeeded;
-            bubbleLeft.SetActive(true);
+            bubble.SetActive(true);
             yield return new WaitForSeconds(durationOfThePunchline);
-            bubbleLeft.SetActive(false);
-            StartCoroutine(CrowdJump());
+            bubble.SetActive(false);
+            //StartCoroutine(CrowdJump());
+            StartCoroutine(reactionScript.DisplayReaction());
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         else
@@ -63,14 +62,14 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator P2Punchline()
     {
-        Debug.Log("P2");
         if (scoreP2 >= punchlineScoreNeeded)
         {
             scoreP2 -= punchlineScoreNeeded;
-            bubbleRight.SetActive(true);
+            bubble.SetActive(true);
             yield return new WaitForSeconds(durationOfThePunchline);
-            bubbleRight.SetActive(false);
-            StartCoroutine(CrowdJump());
+            bubble.SetActive(false);
+            //StartCoroutine(CrowdJump());
+            StartCoroutine(reactionScript.DisplayReaction());
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         else
