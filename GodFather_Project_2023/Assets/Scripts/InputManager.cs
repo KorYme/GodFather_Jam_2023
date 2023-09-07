@@ -39,14 +39,12 @@ public class InputManager : MonoBehaviour
 
 
     Inputs _inputAction;
-    [SerializeField] TMP_Text _text;
     [SerializeField] BubbleManager _bubbleManager;
 
     private void Awake()
     {
         _inputAction = new Inputs();
         _inputAction.Keyboard.Enable();
-        _text.text = "";
     }
 
     private void OnEnable()
@@ -107,7 +105,6 @@ public class InputManager : MonoBehaviour
 
     private void GetCharacterFromInput(string character)
     {
-        _text.text = character + "-" + _text.text;
         _bubbleManager.CheckAllSigns(character.ToUpper());
     }
 }
