@@ -7,12 +7,13 @@ public class BattleManager : MonoBehaviour
     public int scoreP1;
     public int scoreP2;
     public int punchlineScoreNeeded;
-    public int timeBetweenPunchline;
-    public int durationOfThePunchline;
+    public float timeBetweenPunchline;
+    public float durationOfThePunchline;
 
     private GameObject bubbleRight;
     private GameObject bubbleLeft;
     private GameObject crowd;
+    private ReactionScript reactionScript;
 
     private bool P1NoMorePunchline;
     private bool P2NoMorePunchline;
@@ -22,6 +23,7 @@ public class BattleManager : MonoBehaviour
         bubbleRight = GameObject.Find("/Canvas/BubbleRight");
         bubbleLeft = GameObject.Find("/Canvas/BubbleLeft");
         crowd = GameObject.Find("/Crowd");
+        reactionScript = gameObject.GetComponent<ReactionScript>();
     }
 
     void Start()
@@ -42,7 +44,6 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator P1Punchline()
     {
-        Debug.Log("P1");
         if(scoreP1 >= punchlineScoreNeeded)
         {
             scoreP1 -= punchlineScoreNeeded;
@@ -50,6 +51,7 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(durationOfThePunchline);
             bubbleLeft.SetActive(false);
             StartCoroutine(CrowdJump());
+            StartCoroutine(reactionScript.DisplayReaction());
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         else
@@ -63,7 +65,6 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator P2Punchline()
     {
-        Debug.Log("P2");
         if (scoreP2 >= punchlineScoreNeeded)
         {
             scoreP2 -= punchlineScoreNeeded;
@@ -71,6 +72,7 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(durationOfThePunchline);
             bubbleRight.SetActive(false);
             StartCoroutine(CrowdJump());
+            StartCoroutine(reactionScript.DisplayReaction());
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         else
