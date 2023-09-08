@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlaySingleSound("BattleMusic");
+        AudioManager.Instance.StopSingleSound("GameplayMusic");
         bubble.gameObject.SetActive(false);
         ScoreManager.Instance.ChooseWinner();
         StartCoroutine(PunchlineCoroutine());
