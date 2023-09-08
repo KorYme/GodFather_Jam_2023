@@ -89,9 +89,9 @@ public class InputSign : MonoBehaviour
 
     IEnumerator ChangeDirectionCoroutine()
     {
+        _deltaTime = 0;
         while (true)
         {
-            _deltaTime = 0;
             _direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)).normalized;
             _currentCurve = _signMovement.AllMovementCurves[Random.Range(0, _signMovement.AllMovementCurves.Count)];
             yield return new WaitForSeconds(Random.Range(_signMovement.ChangeDirectionTimerRange.x, _signMovement.ChangeDirectionTimerRange.y));

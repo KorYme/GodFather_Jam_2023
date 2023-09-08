@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class BubbleManager : MonoBehaviour
 {
@@ -13,25 +14,48 @@ public class BubbleManager : MonoBehaviour
 
     [SerializeField] UnityEvent _onStun; 
     [SerializeField] List<Sprite> _numbersSprite; 
+    [SerializeField] Image _numberImage; 
+    [SerializeField] float _timeRoundApperance; 
 
     Coroutine _stunCoroutine;
 
+    private void OnEnable()
+    {
+        InputManager.Instance.OnAnyCharacter += CheckAllSigns;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.OnAnyCharacter -= CheckAllSigns;
+    }
+
     private void Start()
     {
+        _onStun.AddListener(() => AudioManager.Instance?.PlaySingleSound("Wronginput"));
         ScoreManager.Instance.PlayNewRound();
-        InitializeSigns();
-        _onStun.AddListener(() => Debug.Log("Stun"));
+        StartCoroutine(WaitForNextPlayer());
     }
 
     public void ChangePlayer()
     {
         ScoreManager.Instance.ChangePlayer();
-        HideAllSigns();
-
-        InitializeSigns();
+        StartCoroutine(WaitForNextPlayer());
     }
 
-    
+    IEnumerator WaitForNextPlayer()
+    {
+        TimerManager.Instance.PlayTimer(false);
+        HideAllSigns();
+        _numberImage.enabled = true;
+        for (int i = 5; i > -1; i--)
+        {
+            _numberImage.sprite = _numbersSprite[i];
+            yield return new WaitForSeconds(1f);
+        }
+        _numberImage.enabled = false;
+        TimerManager.Instance.PlayTimer(true);
+        InitializeSigns();
+    }
 
     public void CheckAllSigns(string str)
     {

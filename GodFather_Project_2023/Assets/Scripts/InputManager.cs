@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
@@ -36,10 +37,17 @@ public class InputManager : MonoBehaviour
 
     Inputs _inputAction;
     [SerializeField] BubbleManager _bubbleManager;
-
+    public Action<string> OnAnyCharacter;
+    public static InputManager Instance;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         _inputAction = new Inputs();
         _inputAction.Keyboard.Enable();
     }
@@ -102,6 +110,7 @@ public class InputManager : MonoBehaviour
 
     private void GetCharacterFromInput(string character)
     {
-        _bubbleManager.CheckAllSigns(character.ToUpper());
+        //_bubbleManager.CheckAllSigns(character.ToUpper());
+        OnAnyCharacter?.Invoke(character.ToUpper());
     }
 }
