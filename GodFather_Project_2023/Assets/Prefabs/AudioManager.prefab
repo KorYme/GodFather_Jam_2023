@@ -48,115 +48,115 @@ MonoBehaviour:
   - Name: a
     Clip: {fileID: 8300000, guid: 3fb44896da5f36b4db0cb7d20ce4cf10, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: z
     Clip: {fileID: 8300000, guid: c4a64349190bbae4a87e68a0516b57c1, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: e
     Clip: {fileID: 8300000, guid: e8b4f457ae4c46c41aef7475ac31047d, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: r
     Clip: {fileID: 8300000, guid: c1a3506999609264ba02c6a8e3d8fb74, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: t
     Clip: {fileID: 8300000, guid: 5761e98e25bbf064c826cb5b383031b6, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: y
     Clip: {fileID: 8300000, guid: b9cc78c061ec5cd408dbe3586f87c53c, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: u
     Clip: {fileID: 8300000, guid: 41bf8c22df85cbd48bfdbd423adc6de5, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: i
     Clip: {fileID: 8300000, guid: 66a440efe11721348af53e774e1c117f, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: q
     Clip: {fileID: 8300000, guid: e4ca8cb7ff7d1b14ba65fa2b89643c30, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: s
     Clip: {fileID: 8300000, guid: 3d6673e461755c64ab51ab393a584346, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: d
     Clip: {fileID: 8300000, guid: 972bb47d51c80b74b98189794f897b35, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: f
     Clip: {fileID: 8300000, guid: 0dc59dc6c8594124d94d944db2a21021, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: g
     Clip: {fileID: 8300000, guid: 74472ab175af6d14e979f0cc388f8b8c, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: h
     Clip: {fileID: 8300000, guid: 000f714f2e564d44c9375fdbfe1f7163, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: j
     Clip: {fileID: 8300000, guid: bb5dbf2700ff58043b809cfd6b090de8, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: k
     Clip: {fileID: 8300000, guid: 63e38060e6cb4b0488a75ce2b4764c13, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: w
     Clip: {fileID: 8300000, guid: 026939a79f6aa734ba46ce1f57d7b7f1, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: x
     Clip: {fileID: 8300000, guid: cd9b43fa534d2ae4a87c058e8afb6f10, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: c
     Clip: {fileID: 8300000, guid: 68814dcfd46355046aacd1fe34589837, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: v
@@ -174,26 +174,26 @@ MonoBehaviour:
   - Name: n
     Clip: {fileID: 8300000, guid: 804de145b2b4f7742945536ebb016693, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: ','
     Clip: {fileID: 8300000, guid: 0a5b7512619ed17458747ad6e52e5f5d, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: ;
     Clip: {fileID: 8300000, guid: 6e703e27dbe949b4ea68f03eb582179d, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
   - Name: BattleMusic
     Clip: {fileID: 8300000, guid: f2bc3bfc8bc09ef439a27fccb4013a82, type: 3}
     Volume: 0.5
-    Pitch: 0
-    Loop: 0
+    Pitch: 1
+    Loop: 1
     Source: {fileID: 0}
   - Name: Wronginput
     Clip: {fileID: 8300000, guid: d27815f0b3d79ae488603140110c5124, type: 3}
@@ -204,6 +204,12 @@ MonoBehaviour:
   - Name: Win
     Clip: {fileID: 8300000, guid: f1cf931de5a1a944d8d7555aecfb1b45, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     Loop: 0
+    Source: {fileID: 0}
+  - Name: GameplayMusic
+    Clip: {fileID: 8300000, guid: e33290810dff88d4fad8e566f116e58f, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 1
     Source: {fileID: 0}
