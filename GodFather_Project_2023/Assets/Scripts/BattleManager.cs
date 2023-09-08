@@ -29,7 +29,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator PunchlineCoroutine()
     {
-        int pictoBatch = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round];
+        int pictoBatch = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round-1];
         if (ScoreManager.Instance.CurrentPlayerQueue.Count == 0)
         {
             ScoreManager.Instance.ChangePlayer();

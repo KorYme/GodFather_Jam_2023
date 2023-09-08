@@ -12,6 +12,7 @@ public class BubbleManager : MonoBehaviour
     [SerializeField, Range(0f,5f)] float _stunTime;
 
     [SerializeField] UnityEvent _onStun; 
+    [SerializeField] List<Sprite> _numbersSprite; 
 
     Coroutine _stunCoroutine;
 
@@ -53,13 +54,13 @@ public class BubbleManager : MonoBehaviour
     public void InitializeSigns()
     {
         List<string> fullList = new List<string>(InputManager.CHARACTERS);
-        for (int i = 0; i < ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round]; i++)
+        for (int i = 0; i < ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round-1]; i++)
         {
             string text = fullList[Random.Range(0, fullList.Count)];
             _signs[i].Initialize(_rTransform, text);
             fullList.Remove(text);
         }
-        for (int i = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round]; i < _signs.Count; i++)
+        for (int i = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round-1]; i < _signs.Count; i++)
         {
             _signs[i].HideSign();
         }
