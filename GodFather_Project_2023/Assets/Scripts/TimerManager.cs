@@ -13,6 +13,8 @@ public class TimerManager : MonoBehaviour
     [SerializeField] Image _image;
     [SerializeField] float _maxTimerValue;
 
+    bool _isActive;
+
     public UnityEvent OnTimerEnded;
 
     private void Awake()
@@ -23,12 +25,14 @@ public class TimerManager : MonoBehaviour
             return;
         }
         Instance = this;
+        _isActive = false;
         _image.fillAmount = 1;
         _timerTime = _maxTimerValue;
     }
 
     private void Update()
     {
+        if (!_isActive) return;
         _timerTime -= Time.deltaTime;
         _image.fillAmount = Mathf.Clamp01(_timerTime / _maxTimerValue);
         if (_timerTime <= 0f)
@@ -37,5 +41,11 @@ public class TimerManager : MonoBehaviour
             OnTimerEnded?.Invoke();
             _timerTime = _maxTimerValue;
         }
+    }
+    public void PlayTimer(bool value)
+    {
+        if (value == _isActive) return;
+        _timerTime = _maxTimerValue;
+        _isActive = value;
     }
 }

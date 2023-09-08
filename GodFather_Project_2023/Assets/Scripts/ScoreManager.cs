@@ -66,7 +66,6 @@ public class ScoreManager : MonoBehaviour
     public void PlayNewRound()
     {
         Round = Mathf.Clamp(Round + 1, 0, 3);
-        Debug.Log(Round + " " +  Mathf.Clamp(Round + 1, 0, 3));
         PlayersPictoQueue[0].Clear();
         PlayersPictoQueue[1].Clear();
     }
