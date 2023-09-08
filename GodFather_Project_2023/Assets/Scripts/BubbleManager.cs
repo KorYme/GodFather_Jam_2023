@@ -31,6 +31,8 @@ public class BubbleManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlaySingleSound("GameplayMusic");
+        AudioManager.Instance.StopSingleSound("BattleMusic");
         _onStun.AddListener(() => AudioManager.Instance?.PlaySingleSound("Wronginput"));
         ScoreManager.Instance.PlayNewRound();
         StartCoroutine(WaitForNextPlayer());
