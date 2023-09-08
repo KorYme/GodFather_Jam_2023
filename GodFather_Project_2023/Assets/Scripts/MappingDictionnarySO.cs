@@ -7,4 +7,5 @@ public class MappingDictionnarySO : ScriptableObject
 {
     public List<string> Keys = new List<string>();
     public List<Sprite> Values = new List<Sprite>();
+    public List<AudioClip> Clips = new List<AudioClip>();
 }

@@ -25,13 +25,18 @@ public class BubbleManager : MonoBehaviour
     public void ChangePlayer()
     {
         ScoreManager.Instance.ChangePlayer();
+        HideAllSigns();
+
         InitializeSigns();
     }
+
+    
 
     public void CheckAllSigns(string str)
     {
         if (_stunCoroutine != null) return;
-        int originalChecked = _signs.Where(x => x.gameObject.activeSelf).Count();
+        _signs.ForEach(x => { if (x == null) { _signs.Remove(x); } });
+        int originalChecked = _signs.Where(x =>x.gameObject.activeSelf).Count();
         _signs.ForEach(x => x.CheckText(str));
         if (originalChecked == _signs.Where(x => x.gameObject.activeSelf).Count())
         {
