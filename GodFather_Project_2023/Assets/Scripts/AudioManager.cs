@@ -8,8 +8,6 @@ using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] Slider _volumeSlider;
-
     public Sound[] Sounds;
 
     public static AudioManager Instance;

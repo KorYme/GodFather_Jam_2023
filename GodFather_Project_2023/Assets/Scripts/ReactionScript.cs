@@ -19,7 +19,6 @@ public class ReactionScript : MonoBehaviour
         reactionObj = GameObject.Find("/Canvas/CrowdReaction");
         reactionImg = reactionObj.GetComponent<Image>();
         reactionObj.transform.localScale = new Vector2(0, 0);
-        AllCrowdEffects();
     }
 
     public IEnumerator DisplayReaction()
