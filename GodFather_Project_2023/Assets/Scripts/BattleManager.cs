@@ -12,7 +12,6 @@ public class BattleManager : MonoBehaviour
     public float timeBetweenPunchline;
     public float durationOfThePunchline;
 
-    private GameObject crowd;
     private ReactionScript reactionScript;
     [SerializeField] MappingDictionnarySO _mapping;
     [SerializeField] List<UnityEngine.UI.Image> _allImages;
@@ -24,7 +23,6 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        crowd = GameObject.Find("/FrontCrowd");
         reactionScript = gameObject.GetComponent<ReactionScript>();
     }
 
@@ -65,8 +63,7 @@ public class BattleManager : MonoBehaviour
             //bubble.SetActive(true);
             yield return new WaitForSeconds(durationOfThePunchline);
             //bubble.SetActive(false);
-            //StartCoroutine(CrowdJump());
-            StartCoroutine(reactionScript.DisplayReaction());
+            reactionScript.AllCrowdEffects();
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         else
@@ -101,8 +98,7 @@ public class BattleManager : MonoBehaviour
             bubble.sprite = _bubbleSprites[ScoreManager.Instance.CurrentPlayer];
             yield return new WaitForSeconds(durationOfThePunchline);
             bubble.gameObject.SetActive(false);
-            //StartCoroutine(CrowdJump());
-            StartCoroutine(reactionScript.DisplayReaction());
+            reactionScript.AllCrowdEffects();
             yield return new WaitForSeconds(timeBetweenPunchline);
             ScoreManager.Instance.ChangePlayer();
         }
@@ -131,8 +127,7 @@ public class BattleManager : MonoBehaviour
             bubble.sprite = _bubbleSprites[ScoreManager.Instance.CurrentPlayer];
             yield return new WaitForSeconds(durationOfThePunchline);
             bubble.gameObject.SetActive(false);
-            //StartCoroutine(CrowdJump());
-            StartCoroutine(reactionScript.DisplayReaction());
+            reactionScript.AllCrowdEffects();
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         //Jouer une animation d'hésitation / déçu
@@ -156,8 +151,7 @@ public class BattleManager : MonoBehaviour
             //bubble.SetActive(true);
             yield return new WaitForSeconds(durationOfThePunchline);
             //bubble.SetActive(false);
-            //StartCoroutine(CrowdJump());
-            StartCoroutine(reactionScript.DisplayReaction());
+            reactionScript.AllCrowdEffects();
             yield return new WaitForSeconds(timeBetweenPunchline);
         }
         else
@@ -167,31 +161,5 @@ public class BattleManager : MonoBehaviour
             yield return null;
         }
         StartCoroutine(P1Punchline());
-    }
-
-    private IEnumerator CrowdJump()
-    {
-        Vector2 originalPos = new Vector2(crowd.transform.position.x, crowd.transform.position.y);
-        Vector2 targetedPos = new Vector2(crowd.transform.position.x, crowd.transform.position.y + 1);
-
-        float lerp = 0;
-
-        while (lerp < 1)
-        {
-            lerp += Time.deltaTime / .2f;
-            crowd.transform.position = Vector2.Lerp(originalPos, targetedPos, lerp);
-
-            yield return null;
-        }
-
-        lerp = 0;
-
-        while (lerp < 1)
-        {
-            lerp += Time.deltaTime / .2f;
-            crowd.transform.position = Vector2.Lerp(targetedPos, originalPos, lerp);
-
-            yield return null;
-        }
     }
 }
