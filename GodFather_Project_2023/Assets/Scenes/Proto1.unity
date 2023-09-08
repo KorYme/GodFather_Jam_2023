@@ -137,15 +137,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852679768296182308, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0882769
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4852679768296182308, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1782648
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4852679768296182308, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.51129764
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4852679768296182308, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -804,7 +804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444fa9a0d4662ef4fb9b609a0cd7e06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bubbleManager: {fileID: 1146840869}
   _isOnArcade: 0
 --- !u!1 &619394800
 GameObject:

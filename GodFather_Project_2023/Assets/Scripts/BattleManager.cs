@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -47,7 +48,7 @@ public class BattleManager : MonoBehaviour
             {
                 list.Add(ScoreManager.Instance.CurrentPlayerQueue.Dequeue());
             }
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < _allImages.Count; i++)
             {
                 _allImages[i].enabled = false;
             }
@@ -86,11 +87,16 @@ public class BattleManager : MonoBehaviour
                 _botObject.SetActive(true);
                 _aliObject.SetActive(false);
             }
-
+            InputManager.Instance.OnAnyCharacter += ReOpenFirstScene;
         }
         else
         {
             SceneManager.LoadScene("Proto1");
         }
+    }
+
+    void ReOpenFirstScene(string s)
+    {
+        SceneManager.LoadScene(0);
     }
 }

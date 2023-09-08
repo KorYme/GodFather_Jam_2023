@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444fa9a0d4662ef4fb9b609a0cd7e06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOnArcade: 1
+  _isOnArcade: 0
 --- !u!4 &1830119242
 Transform:
   m_ObjectHideFlags: 0
