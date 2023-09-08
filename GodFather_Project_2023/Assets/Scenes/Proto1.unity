@@ -748,6 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bubbleManager: {fileID: 1146840869}
+  _isOnArcade: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
