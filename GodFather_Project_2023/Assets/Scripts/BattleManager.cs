@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
@@ -13,7 +14,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField] List<Image> _allImages;
     [SerializeField] List<Sprite> _bubbleSprites;
     [SerializeField] Image bubble;
-    public int Winner { get; private set; }
 
     private void Awake()
     {
@@ -22,68 +22,56 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        Winner = -1;
         bubble.gameObject.SetActive(false);
+        ScoreManager.Instance.ChooseWinner();
         StartCoroutine(PunchlineCoroutine());
     }
 
     public IEnumerator PunchlineCoroutine()
     {
         int pictoBatch = ScoreManager.Instance.PictoPerBatch[ScoreManager.Instance.Round];
-        while (ScoreManager.Instance.CurrentPlayerQueue.Count >= pictoBatch)
+        if (ScoreManager.Instance.CurrentPlayerQueue.Count == 0)
         {
-            List<string> list = new List<string>();
-            for (int i = 0; i < pictoBatch; i++)
-            {
-                list.Add(ScoreManager.Instance.CurrentPlayerQueue.Dequeue());
-            }
-            for (int i = 0; i < list.Count; i++)
-            {
-                _allImages[i].enabled = true;
-                _allImages[i].sprite = _mapping.Values[_mapping.Keys.FindIndex(x => x.ToLower() == list[i].ToLower())];
-            }
-            for (int i = list.Count; i < 12; i++)
-            {
-                _allImages[i].enabled = false;
-            }
-            bubble.gameObject.SetActive(true);
-            bubble.sprite = _bubbleSprites[ScoreManager.Instance.CurrentPlayer];
-            yield return new WaitForSeconds(durationOfThePunchline);
-            bubble.gameObject.SetActive(false);
-            reactionScript.AllCrowdEffects();
-            yield return new WaitForSeconds(timeBetweenPunchline);
             ScoreManager.Instance.ChangePlayer();
         }
-        ScoreManager.Instance.ChangePlayer();
-        if (ScoreManager.Instance.CurrentPlayerQueue.Count < pictoBatch)
-        {
-            Debug.Log("DRAW");
-        }
-        while (ScoreManager.Instance.CurrentPlayerQueue.Count >= pictoBatch)
+        while (ScoreManager.Instance.CurrentPlayerQueue.Count > 0)
         {
             List<string> list = new List<string>();
-            for (int i = 0; i < pictoBatch; i++)
+            int maxValue = ScoreManager.Instance.CurrentPlayerQueue.Count;
+            for (int i = 0; i < Mathf.Clamp(pictoBatch, 1, maxValue); i++)
             {
                 list.Add(ScoreManager.Instance.CurrentPlayerQueue.Dequeue());
             }
+            for (int i = 0; i < 12; i++)
+            {
+                _allImages[i].enabled = false;
+            }
+            bubble.sprite = _bubbleSprites[ScoreManager.Instance.CurrentPlayer];
+            bubble.gameObject.SetActive(true);
             for (int i = 0; i < list.Count; i++)
             {
                 _allImages[i].enabled = true;
                 _allImages[i].sprite = _mapping.Values[_mapping.Keys.FindIndex(x => x.ToLower() == list[i].ToLower())];
+                //Lancement son
+                yield return new WaitForSeconds(.5f);
             }
-            for (int i = list.Count; i < 12; i++)
-            {
-                _allImages[i].enabled = false;
-            }
-            bubble.gameObject.SetActive(true);
-            bubble.sprite = _bubbleSprites[ScoreManager.Instance.CurrentPlayer];
             yield return new WaitForSeconds(durationOfThePunchline);
             bubble.gameObject.SetActive(false);
             reactionScript.AllCrowdEffects();
-            yield return new WaitForSeconds(timeBetweenPunchline);
+            if (ScoreManager.Instance.PlayersPictoQueue[(ScoreManager.Instance.CurrentPlayer + 1) % 2].Count > 0)
+            {
+                ScoreManager.Instance.ChangePlayer();
+            }
         }
-        //Jouer une animation d'hésitation / déçu
-        Winner = ScoreManager.Instance.CurrentPlayer;
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        if (ScoreManager.Instance.Round == 3 && ScoreManager.Instance.Winner != 1)
+        {
+            //AFFICHAGE VICTOIRE
+            Debug.Log("Le gagnant est le joueur " +  (ScoreManager.Instance.Winner+1));
+        }
+        else
+        {
+            SceneManager.LoadScene("Proto1");
+        }
     }
 }
