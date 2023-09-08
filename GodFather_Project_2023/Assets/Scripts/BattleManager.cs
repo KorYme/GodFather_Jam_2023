@@ -14,6 +14,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] List<Image> _allImages;
     [SerializeField] List<Sprite> _bubbleSprites;
     [SerializeField] Image bubble;
+    [SerializeField] GameObject _screenVictory;
+    [SerializeField] GameObject _aliObject;
+    [SerializeField] GameObject _botObject;
 
     private void Awake()
     {
@@ -70,16 +73,18 @@ public class BattleManager : MonoBehaviour
         {
             //AFFICHAGE VICTOIRE
             Debug.Log("Le gagnant est le joueur " +  (ScoreManager.Instance.Winner+1));
-            GameObject.Find("/Canvas/VictoryScreen").SetActive(true);
+            _screenVictory.SetActive(true);
             AudioManager.Instance.StopSingleSound("BattleMusic");
             AudioManager.Instance.PlaySingleSound("Win");
             if (ScoreManager.Instance.Winner == 0)
             {
-                GameObject.Find("/Canvas/VictoryScreen/AlienPlayer").SetActive(true);
+                _aliObject.SetActive(true);
+                _botObject.SetActive(false);
             }
             else
             {
-                GameObject.Find("/Canvas/VictoryScreen/RobotPlayer").SetActive(true);
+                _botObject.SetActive(true);
+                _aliObject.SetActive(false);
             }
 
         }

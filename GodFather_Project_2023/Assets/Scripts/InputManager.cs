@@ -36,7 +36,6 @@ public class InputManager : MonoBehaviour
 
 
     Inputs _inputAction;
-    [SerializeField] BubbleManager _bubbleManager;
     public Action<string> OnAnyCharacter;
     public static InputManager Instance;
 

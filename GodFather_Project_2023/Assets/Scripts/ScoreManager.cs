@@ -50,7 +50,6 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
-        ResetGame();
     }
 
     public void ResetGame()
@@ -79,7 +78,7 @@ public class ScoreManager : MonoBehaviour
 
     public void CheckEndRound()
     {
-        if (CurrentPlayer == 0 && SceneManager.GetActiveScene().buildIndex == 0)
+        if (CurrentPlayer == 0 && SceneManager.GetActiveScene().buildIndex == 1)
         {
             SceneManager.LoadScene("BattleScene");
         }
