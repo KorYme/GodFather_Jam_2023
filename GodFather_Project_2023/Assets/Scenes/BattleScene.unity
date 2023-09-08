@@ -1062,9 +1062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681f97a81cec8e040a04315dd7ca4a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreP1: 12
-  scoreP2: 32
-  punchlineScoreNeeded: 5
   timeBetweenPunchline: 2
   durationOfThePunchline: 2.5
   _mapping: {fileID: 11400000, guid: d4536718a6d5a5e49b93bb11328bd274, type: 2}
@@ -2413,6 +2410,30 @@ PrefabInstance:
     - target: {fileID: 4852679768296182308, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917493620020743578, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
+      propertyPath: Sounds.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917493620020743578, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
+      propertyPath: Sounds.Array.data[24].Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917493620020743578, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
+      propertyPath: Sounds.Array.data[27].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e33290810dff88d4fad8e566f116e58f, type: 3}
+    - target: {fileID: 8917493620020743578, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
+      propertyPath: Sounds.Array.data[27].Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917493620020743578, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
+      propertyPath: Sounds.Array.data[27].Name
+      value: GameplayMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917493620020743578, guid: a3f37fa7684178745bfab6c74ecbed1a, type: 3}
+      propertyPath: Sounds.Array.data[27].Volume
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
