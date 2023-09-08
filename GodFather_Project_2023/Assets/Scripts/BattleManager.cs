@@ -22,6 +22,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.PlaySingleSound("BattleMusic");
         bubble.gameObject.SetActive(false);
         ScoreManager.Instance.ChooseWinner();
         StartCoroutine(PunchlineCoroutine());
@@ -52,7 +53,7 @@ public class BattleManager : MonoBehaviour
             {
                 _allImages[i].enabled = true;
                 _allImages[i].sprite = _mapping.Values[_mapping.Keys.FindIndex(x => x.ToLower() == list[i].ToLower())];
-                //Lancement son
+                AudioManager.Instance.PlaySingleSound(list[i].ToLower());
                 yield return new WaitForSeconds(.5f);
             }
             yield return new WaitForSeconds(durationOfThePunchline);
@@ -68,6 +69,18 @@ public class BattleManager : MonoBehaviour
         {
             //AFFICHAGE VICTOIRE
             Debug.Log("Le gagnant est le joueur " +  (ScoreManager.Instance.Winner+1));
+            GameObject.Find("/Canvas/VictoryScreen").SetActive(true);
+            AudioManager.Instance.StopSingleSound("BattleMusic");
+            AudioManager.Instance.PlaySingleSound("Win");
+            if (ScoreManager.Instance.Winner == 0)
+            {
+                GameObject.Find("/Canvas/VictoryScreen/AlienPlayer").SetActive(true);
+            }
+            else
+            {
+                GameObject.Find("/Canvas/VictoryScreen/RobotPlayer").SetActive(true);
+            }
+
         }
         else
         {
